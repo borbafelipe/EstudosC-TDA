@@ -1,7 +1,7 @@
 /*
-** Função : Verificação de Números Primos
+** Função : Verifica se um número é primo e exibe primos até um número inserido pelo usuário
 ** Autor : Felipe Borba
-** Data : 09/11/2023
+** Data : 
 ** Observações:
 */
 
@@ -10,33 +10,31 @@
 int ePrimo(int num);
 
 int main() {
-    int lim;
+    int n;
 
-    printf("Digite um número inteiro para definir o intervalo 2~limite: ");
-    scanf("%d", &lim);
+    printf("Digite um número (N): ");
+    scanf("%d", &n);
 
-    if (lim < 2) {
-        printf("O numero deve ser no min 2.\n");
-        return 1; 
-    }
-
-    printf("Números primos entre 2 e %d: ", lim);
-
-    for (int num = 2; num <= lim; num++) {
-        if (ePrimo(num)) {
-            printf("%d ", num);
+    printf("Números primos entre 2 e %d:\n", n);
+    for (int i = 2; i <= n; ++i) {
+        if (ePrimo(i)) {
+            printf("%d\n", i);
         }
     }
-
-    printf("\n");
 
     return 0;
 }
 
 int ePrimo(int num) {
-    if (num <= 1) return 0;
-    for (int i = 2; i * i <= num; i++) {
-        if (num % i == 0) return 0;
+    if (num <= 1) {
+        return 0;
     }
+
+    for (int i = 2; i <= num / 2; ++i) {
+        if (num % i == 0) {
+            return 0;
+        }
+    }
+
     return 1;
 }

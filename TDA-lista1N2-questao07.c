@@ -1,35 +1,31 @@
 /*
-** Função : cálculo da aproximação de Pi usando a fórmula de Leibniz
+** Função : Calcula uma aproximação de PI usando a fórmula de Leibniz
 ** Autor : Felipe Borba
-** Data : 09/11/2023
+** Data : 
 ** Observações:
 */
 
 #include <stdio.h>
 
-double calcularAproxPi(int n);
+double pi_aprox(int n);
 
 int main() {
-    int n;
+    int termos;
 
-    printf("Digite o número de ciclos para calcular Pi: ");
-    scanf("%d", &n);
+    printf("Digite o número de termos para a aproximação de PI: ");
+    scanf("%d", &termos);
 
-    double aproxPi = calcularAproxPi(n);
-
-    printf("Aproximação de Pi após %d ciclos: %.15lf\n", n, aproxPi);
+    double aprox_pi = pi_aprox(termos);
+    printf("A aproximação de PI com %d termos é: %.8lf\n", termos, aprox_pi);
 
     return 0;
 }
 
-double calcularAproxPi(int n) {
-    double pi = 0.0;
-    int sinal = 1;
-
-    for (int i = 0; i < n; i++) {
-        pi += sinal / (2.0 * i + 1);
-        sinal *= -1;
+double pi_aprox(int n) {
+    double soma = 0.0;
+    for (int i = 0; i < n; ++i) {
+        soma += (i % 2 == 0 ? 1.0 : -1.0) / (2 * i + 1);
     }
 
-    return 4 * pi;
+    return 4 * soma;
 }
